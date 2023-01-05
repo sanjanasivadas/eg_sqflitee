@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> _journals = [];
 
   bool _isLoading = true;
+
   //this function is used to fetch all datas from the database
   void _refreshJournals() async {
     final data = await SQLHelper.getItems();
@@ -146,10 +147,8 @@ class _HomePageState extends State<HomePage> {
         title: const Text('SqfLite'),
       ),
       body: _isLoading ? const Center(
-              child: CircularProgressIndicator(),
-            )
-
-               : ListView.builder(
+              child: CircularProgressIndicator(),  // ?: conditional operator
+            ) : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(
                 color: Colors.orange[200],

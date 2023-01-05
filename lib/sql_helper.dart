@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart' as sql;
 
 class SQLHelper {
 
-  static Future<void> createTables(sql.Database database) async {
+  static Future<void> createTables(sql.Database database) async { //database or we can use db as the object for sql.Database
     await database.execute("""CREATE TABLE items(
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       title TEXT,
@@ -18,10 +18,10 @@ class SQLHelper {
 // title, description: name and description of your activity
 // created_at: the time that the item was created. It will be automatically handled by SQLite
 
-  static Future<sql.Database> db() async {
+  static Future<sql.Database> db() async {  //here db is function when we call db it should return database
     return sql.openDatabase(
-      'kindacode.db',
-       version: 1,
+      'kindacode.db',       //databasename.db
+       version: 1,      //database version  bydefault version is 1 or we can upgrade accordingly
        onCreate: (sql.Database database, int version) async {
       await createTables(database);
     });
